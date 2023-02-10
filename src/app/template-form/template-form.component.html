@@ -2,20 +2,31 @@
     <div class="form-group">
       <label for="nome">Nome:</label>
       <input type="text" class="form-control" id="nome" placeholder="Nome Sobrenome" name="nome" [ngModel]="usuario.nome"
-        required #nome>
+        required #nome="ngModel">
         <!--<div>
             {{ nome.className }}
+        
+        nome.touched -> só aparece se tiver foco no input e mesmo assim for inválido
         </div-->
+        <div *ngIf="!nome.valid && nome.touched"
+            class="alert alert-danger" role="alert">
+            Nome é obrigatório
+        </div>
     </div>
     <div class="form-group">
       <label for="email">E-mail:</label>
       <input type="email" class="form-control" name="email" id="email" placeholder="nome@email.com" [ngModel]="usuario.email"
-      required email>
+      required email #email="ngModel">
         <!--pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"-->
+    
+        <div *ngIf="!email.valid && email.touched"
+        class="alert alert-danger" role="alert">
+        E-mail é obrigatório
+    </div>
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
 
   <!--
-      aula 77
+      aula 79
   -->
