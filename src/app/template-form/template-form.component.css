@@ -1,0 +1,9 @@
+/* Deixa o formulario em vermelho se invalido*/
+.ng-invalid:not(form){
+    border: 1px solid red;
+}
+
+/* Deixa o formulario em azul se válido*/
+.ng-valid:not(form){
+    border: 1px solid blue
+}
