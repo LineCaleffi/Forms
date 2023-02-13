@@ -11,6 +11,9 @@ export class TemplateFormComponent implements OnInit{
     email: null
   }
 
+  constructor( 
+   ) { }
+
   /*
     usuario: any={
       nome: 'Aline',
@@ -26,5 +29,15 @@ export class TemplateFormComponent implements OnInit{
     //console.log(this.usuario);
   }
 
-  constructor() { }
+  verificaValidTouched(campo: any){
+    return !campo.valid && campo.touched;
+  }
+
+  aplicaCssErro(campo: any) {
+    return {
+      'has-error': this.verificaValidTouched(campo),
+      'has-feedback': this.verificaValidTouched(campo)
+    };
+  }
+
 }
