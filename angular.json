@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "forms": {
+    "forms_01": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/forms",
+            "outputPath": "dist/forms_01",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -25,9 +25,14 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.js",
+              "./node_modules/jquery/dist/jquery.js",
+              "./node_modules/popper.js/dist/umd/popper.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -60,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "forms:build:production"
+              "browserTarget": "forms_01:build:production"
             },
             "development": {
-              "browserTarget": "forms:build:development"
+              "browserTarget": "forms_01:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "forms:build"
+            "browserTarget": "forms_01:build"
           }
         },
         "test": {
@@ -96,6 +101,6 @@
     }
   },
   "cli": {
-    "analytics": "8b6a0021-7671-4e13-8f9a-d8d23f2f3f23"
+    "analytics": "eb826640-8c0f-4769-aab5-4be1306d3e9d"
   }
 }

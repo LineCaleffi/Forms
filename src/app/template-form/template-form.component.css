@@ -1,9 +1,0 @@
-/* Caso a pessoa clique no campo deixa a borda do input em vermelho se inválido*/
-.ng-invalid.ng-touched:not(form){
-    border: 1px solid red;
-}
-
-/* Caso a pessoa clique no campo deixa a borda do input em azul se válido*/
-.ng-valid:not(form){
-    border: 1px solid blue
-}

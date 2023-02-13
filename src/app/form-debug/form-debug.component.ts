@@ -5,7 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './form-debug.component.html',
   styleUrls: ['./form-debug.component.css']
 })
-export class FormDebugComponent implements OnInit{
+export class FormDebugComponent  implements OnInit{
   
   @Input()
   form: any;
