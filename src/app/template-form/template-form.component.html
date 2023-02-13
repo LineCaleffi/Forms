@@ -21,7 +21,8 @@
     <!-- ngModelGroup="endereco" -> Agrupa todos q fazem parte do endereco -->
     <div class="col-md-3" [ngClass]="aplicaCssErro(cep)" ngModelGroup="endereco">
         <label for="cep" class="form-label">CEP:</label>
-        <input type="text" class="form-control" id="cep" name="cep" ngModel required #cep="ngModel">
+        <input type="text" class="form-control" id="cep" name="cep" ngModel required #cep="ngModel"
+        (blur)="consultaCEP(cep.value, f)">
         <app-campo-control-erro [mostrarErro]="verificaValidTouched(cep)"
             msgErro="CEP é obrigatório."></app-campo-control-erro>
     </div>
@@ -75,7 +76,7 @@
 </form>
 
 <!--
-    AULA 84
+    AULA 85
 
 [disabled]="!f.valid" -> desabilita o botão se todos os campos do formulário não for preenchido
   
