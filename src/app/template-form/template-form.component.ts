@@ -14,20 +14,10 @@ export class TemplateFormComponent implements OnInit {
   }
 
   constructor(private http: HttpClient) { }
-
-  /*
-    usuario: any={
-      nome: 'Aline',
-      email: 'email@email.com'
-    }
-  */
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit(form: any) {
     console.log(form);
-    //console.log(this.usuario);
   }
 
   verificaValidTouched(campo: any) {
@@ -54,11 +44,16 @@ export class TemplateFormComponent implements OnInit {
       //Valida o formato do CEP
       if (validaCep.test(cep)) {
         //Consulta o webservice viacep.com.br/
+        this.resetaDadosForm(form);
+
         this.http.get(`//viacep.com.br/ws/${cep}/json/`)
           .pipe(map((dados: any) => dados))
           .subscribe(dados => this. populaDadosForm(dados, form)
           )
-      }
+      }else {
+        this.resetaDadosForm(form);
+        alert("CEP inválido.");
+    } 
     }
   }
 
@@ -97,8 +92,20 @@ export class TemplateFormComponent implements OnInit {
         estado: dados.uf
       }
     });
-
-    console.log(formulario);
   }
 
+  //reseta antes da consulta do CEP
+  resetaDadosForm(formulario: any){
+    formulario.form.patchValue({
+      endereco: {
+        rua: null,
+        cep:null,
+        numero: null,
+        complemento: null,
+        bairro: null ,
+        cidade: null,
+        estado: null
+      }
+    });
+  }
 }
