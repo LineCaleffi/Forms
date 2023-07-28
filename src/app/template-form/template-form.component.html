@@ -1,0 +1,89 @@
+<form class="row g-3" #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+    <div class="col-md-12">
+        <label for="nome" class="form-label">Nome:</label>
+        <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" [ngModel]="usuario.nome"
+            required #nome="ngModel">
+
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(nome)"
+            msgErro="Nome é obrigatório."></app-campo-control-erro>
+    </div>
+
+    <div class="col-md-12" [ngClass]="aplicaCssErro(email)">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" class="form-control" name="email" id="email" placeholder="nome@email.com"
+            [ngModel]="usuario.email" required email #email="ngModel">
+
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(email)"
+            msgErro="Email inválido."></app-campo-control-erro>
+    </div>
+
+    <!-- ngModelGroup="endereco" -> Agrupa todos q fazem parte do endereco -->
+    <div class="col-md-3" [ngClass]="aplicaCssErro(cep)" ngModelGroup="endereco">
+        <label for="cep" class="form-label">CEP:</label>
+        <input type="text" class="form-control" id="cep" name="cep" ngModel required #cep="ngModel"
+        (blur)="consultaCEP(cep.value, f)">
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(cep)"
+            msgErro="CEP é obrigatório."></app-campo-control-erro>
+    </div>
+
+    <div class="col-md-3" [ngClass]="aplicaCssErro(numero)" ngModelGroup="endereco">
+        <label for="numero" class="form-label">Número:</label>
+        <input type="text" class="form-control" id="numero" name="numero" ngModel required #numero="ngModel">
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(numero)"
+            msgErro="Número é obrigatório."></app-campo-control-erro>
+    </div>
+
+    <div class="col-md-6" ngModelGroup="endereco">
+        <label for="complemento" class="form-label">Complemento:</label>
+        <input type="text" class="form-control" id="complemento"  name="complemento" ngModel required #complemento="ngModel">
+    </div>
+
+    <div class="col-md-12" [ngClass]="aplicaCssErro(rua)" ngModelGroup="endereco">
+        <label for="rua" class="form-label">Rua: </label>
+        <input type="text" class="form-control" name="rua" id="rua" ngModel required #rua="ngModel">
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(rua)"
+            msgErro="Rua é obrigatório."></app-campo-control-erro>
+    </div>
+
+    <div class="col-md-4" [ngClass]="aplicaCssErro(bairro)" ngModelGroup="endereco">
+        <label for="bairro" class="form-label">Bairro:</label>
+        <input type="text" class="form-control" id="bairro" name="bairro" ngModel required #bairro="ngModel">
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(bairro)"
+            msgErro="Bairro é obrigatório."></app-campo-control-erro>
+    </div>
+
+    <div class="col-md-4" [ngClass]="aplicaCssErro(cidade)" ngModelGroup="endereco">
+        <label for="cidade" class="form-label">Cidade:</label>
+        <input type="text" class="form-control" id="cidade" name="cidade" ngModel required #cidade="ngModel">
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(cidade)"
+            msgErro="Cidade é obrigatório."></app-campo-control-erro>
+    </div>
+
+    <div class="col-md-4" [ngClass]="aplicaCssErro(estado)" ngModelGroup="endereco">
+        <label for="estado" class="form-label">Estado:</label>
+        <input type="text" class="form-control" id="estado" name="estado" ngModel required #estado="ngModel">
+        <app-campo-control-erro [mostrarErro]="verificaValidTouched(estado)"
+            msgErro="Estado é obrigatório."></app-campo-control-erro>
+    </div>
+
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Enviar</button>
+    </div>
+
+    <app-form-debug [form]="f"></app-form-debug>
+</form>
+
+<!--
+    AULA 85
+
+[disabled]="!f.valid" -> desabilita o botão se todos os campos do formulário não for preenchido
+  
+pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
+
+-->
+
+<p style="color: red; background-color: rgb(255, 223, 223);"> OBS PatchValue: </p><p>O PatchValue não atualiza o restante do formulário quando coloca o CEP, apenas os campos que definimos </p>
+
+<p style="color: red; background-color: rgb(255, 223, 223);"> OBS SetValue:</p><p> O SetValue atualiza todo formulário quando coloca o CEP</p>
